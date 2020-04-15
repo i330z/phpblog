@@ -11,7 +11,7 @@
 
        
     } else {
-        header('location:register.php');    
+        header('location:login.php');    
     }
 
     if(isset($_GET['logout'])){
@@ -19,13 +19,20 @@
         session_destroy();
     }
 
-    $postquery = "SELECT title, post FROM blogpost WHERE email='$email'";
+    $postquery = "SELECT title, post, id FROM blogpost WHERE email='$email'";
 
-    $result = mysqli_query($conn,$postquery);
+    // $postjoint = "SELECT users.email, users.name, blogpost.title, blogpost.post FROM users INNER JOIN blogpost ON users.email=blogpost.email AND users.email='$email'";
+    // $postjoint = "SELECT * FROM users";
 
-    $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    // $jointresult = mysqli_query($conn,$postjoint);
+
+    // $jointpost = mysqli_fetch_all($jointresult, MYSQLI_ASSOC);
+    $result = mysqli_query($conn,$postquery);   
+
+    $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);    
     mysqli_free_result($result);
     mysqli_close($conn); 
+    // print_r($jointpost);
 ?>
 
 
@@ -36,19 +43,30 @@
 
     <?php include('template/header.php'); ?>
     
-    <div class="center">
-
-        <p>you are logged in as <?php echo $email ?></p>
-        <div><?php echo $id ?></div>
-
-        <?php 
-        foreach($posts as $post) : ?>
-
-            <h5><?php echo $post['title'] ?></h5>
-            <p><?php echo $post['post'] ?></p>
-        <?php endforeach ?>
-        <div>
-            <button type="submit" name="logout"><a href="index.php?logout='1">Logout</a></button>
+    <div >
+        <div class="container" style="padding-top: 50px;">
+        <div class="row">
+                <?php 
+                foreach($posts as $post) : ?>
+                 <div class="col s12 m6">
+                    <div class="card horizontal z-depth-0">
+                        
+                        <div class="card-stacked">
+                            <div class="card-content">
+                            <span class="card-title" style="font-weight:600;"><?php echo $post['title'] ?></span>
+                            <p><?php echo $post['post'] ?></p>
+                            </div>
+                            <div class="card-action">
+                            <a href="details.php?id=<?php echo $post['id']?>">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+        <div class="center">
+            <button type="submit" class="btn brand" name="logout"><a href="index.php?logout">Logout</a></button>
         </div> 
     </div>
 

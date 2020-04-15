@@ -12,6 +12,7 @@
         </div>
         <?php if(isset($_SESSION['email'])) : ?>
             <ul id="nav-mobile" class="right hide-on-small-and-down">
+                <li style="color:black">Hello <?php echo $_SESSION['email'] ?></li>
                 <li>
                     <a href="add.php" class="btn brand z-depth-0">Add a Post</a>
                 </li>
