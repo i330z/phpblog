@@ -75,7 +75,10 @@
         <input type="password" name="password" value="<?php echo htmlspecialchars($password)?>">
         <div class="red-text"><?php echo $error['password']; ?></div>
         <div class="center">
-            <input type="submit" name="submit" value="submit" class=""btn brand z-depth-0>
+            <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
+            <div class="center">
+                Already have an account? <a href="login.php">Login</a>
+            </div>
         </div>
         
     </form>

@@ -58,11 +58,7 @@
 
     <?php include('template/header.php'); ?>
     
-    <div class="center">
-
-        <p>you are logged in as <?php echo $email ?></p>
-        <span> with id =<?php echo $id ?></span>
-
+    <div class="center" style="padding-top: 50px;">
         <div>
         <form class="white" action="add.php" method="POST">
         
@@ -74,8 +70,8 @@
         <textarea id="textarea1" name="post" class="materialize-textarea" value="<?php echo htmlspecialchars($post)?>"></textarea>
         <div class="red-text"><?php echo $error['post']; ?></div>
         <div class="center">
-            <input type="submit" name="submit" value="submit" class=""btn brand z-depth-0>
-            <input type="submit" name="cancel" value="cancel" class=""btn brand z-depth-0>
+            <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
+            <input type="submit" name="cancel" value="cancel" class="btn brand z-depth-0">
         </div>
         
         </form>
@@ -83,9 +79,9 @@
         </div>
 
     </div>
-    <div>
-        <button type="submit" name="logout"><a href="index.php?logout='1">Logout</a></button>
-    </div> 
+    <!-- <div class="center">
+        <button type="submit" class="btn brand" name="logout"><a href="index.php?logout='1">Logout</a></button>
+    </div>  -->
 
     <?php include('template/footer.php') ?>
     
